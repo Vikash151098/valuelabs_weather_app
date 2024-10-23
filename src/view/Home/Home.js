@@ -52,36 +52,39 @@ const Home = ({ dispatch }) => {
 
   return (
     <>
-      <div style={{ padding: "50px" }}>
-        <form action={submitAction}>
-          <div style={{ display: "flex", columnGap: 10 }}>
-            <input className={styles['search-input']} type='text' name='search' />
-            <button type='submit' disabled={isPending}>Search</button>
-          </div>
-        </form>
-        {[...state.cityList].length > 0 && <p>Please select any One</p>}
-        <ul>
-          {[...state.cityList].map((item, i) => {
-            return <li key={i} className={styles['ist-item']} onClick={() => handleFindWeather(item?.coord)}>{`${item?.name},${item?.sys?.country}`}</li>
-          })}
-        </ul>
-        {!error && state?.currentWeather && <>
-          <div style={{ display: "flex", columnGap: 10 }}>
-            <div>Temperature :</div>
-            <div>{state?.currentWeather?.temp}</div>
-          </div>
-          <div style={{ display: "flex", columnGap: 10 }}>
-            <div>Humidity :</div>
-            <div>{state?.currentWeather?.humidity}</div>
-          </div>
-          <div style={{ display: "flex", columnGap: 10 }}>
-            <div>Weather Conditions :</div>
-            <div>{`Feels like ${state?.currentWeather?.feels_like}, ${state?.currentWeather?.weather?.[0]?.description}`}</div>
-          </div>
+      <div style={{ padding: "20px 50px", display: "flex", flexDirection: "column", rowGap: 20 }}>
+        <h2 className={styles['title']}>Weather App</h2>
+        <div style={{ display: "flex", flexDirection: "column", }}>
+          <form action={submitAction}>
+            <div style={{ display: "flex", columnGap: 10 }}>
+              <input className={styles['search-input']} type='text' placeholder='Search by city name...' name='search' />
+              <button type='submit' disabled={isPending}>Search</button>
+            </div>
+          </form>
+          {[...state.cityList].length > 0 && <p>Please select any One</p>}
+          <ul>
+            {[...state.cityList].map((item, i) => {
+              return <li key={i} className={styles['ist-item']} onClick={() => handleFindWeather(item?.coord)}>{`${item?.name},${item?.sys?.country}`}</li>
+            })}
+          </ul>
+          {!error && state?.currentWeather && <>
+            <div style={{ display: "flex", columnGap: 10 }}>
+              <div>Temperature :</div>
+              <div>{state?.currentWeather?.temp}</div>
+            </div>
+            <div style={{ display: "flex", columnGap: 10 }}>
+              <div>Humidity :</div>
+              <div>{state?.currentWeather?.humidity}</div>
+            </div>
+            <div style={{ display: "flex", columnGap: 10 }}>
+              <div>Weather Conditions :</div>
+              <div>{`Feels like ${state?.currentWeather?.feels_like}, ${state?.currentWeather?.weather?.[0]?.description}`}</div>
+            </div>
 
-        </>
-        }
-        {error && <Alert>Search result not found</Alert>}
+          </>
+          }
+          {error && <Alert>Search result not found</Alert>}
+        </div>
       </div>
     </>
   );
