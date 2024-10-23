@@ -18,6 +18,12 @@ const Home = ({ dispatch }) => {
         if (res?.data) {
           if ([...res.data.list].length == 0) {
             setError(true)
+            dispatch({
+              type: SEARCH_CITY, payload: {
+                city: city,
+                cityList: [],
+              }
+            });
             return null
           }
           setError(false)
