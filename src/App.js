@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from 'react';
+import Home from './view/Home/Home';
+import { weatherReducer } from './controller/weatherReducer';
+import { WeatherContext } from './Context/WeatherContext';
+import './App.module.css'
+
+const initState = { city: "", cityList: [], temp: 0, humidity: null, weatherCondition: null, currentWeather: null }
 
 function App() {
+  const [state, dispatch] = useReducer(weatherReducer, initState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <WeatherContext value={state}>
+        <Home dispatch={dispatch} />
+      </WeatherContext>
+    </>
   );
 }
 
