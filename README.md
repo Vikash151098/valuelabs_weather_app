@@ -6,6 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm install`
+
+Install the dependency \
+If throws error use `npm install -f` to make it forcefully since in this project React 19 RC version has been used that may not be supproted with your currect node version installed 
+
 ### `npm start`
 
 Runs the app in the development mode.\
